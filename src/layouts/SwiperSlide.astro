@@ -1,0 +1,16 @@
+---
+import { type CollectionEntry } from "astro:content";
+
+interface Props {
+  content: CollectionEntry<"lorem-ipsum">;
+}
+
+const { content } = Astro.props as Props;
+const { Content } = await content.render();
+---
+
+<div data-hash={content.data.hash} class="swiper-slide">
+  <section class="prose min-h-[100%]">
+    <Content />
+  </section>
+</div>
