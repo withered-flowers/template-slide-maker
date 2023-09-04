@@ -1,9 +1,13 @@
 ---
+import { getCollection } from "astro:content";
+
 import SwiperLayout from "../../layouts/SwiperLayout.astro";
+
+const posts = await getCollection("lorem-ipsum");
 ---
 
 <SwiperLayout title="Slide 001">
-  <div data-hash="slide1" class="swiper-slide">Slide 1</div>
+  <!-- <div data-hash="slide1" class="swiper-slide">Slide 1</div>
   <div data-hash="slide2" class="swiper-slide">Slide 2</div>
   <div data-hash="slide3" class="swiper-slide">Slide 3</div>
   <div data-hash="slide4" class="swiper-slide">Slide 4</div>
@@ -11,5 +15,12 @@ import SwiperLayout from "../../layouts/SwiperLayout.astro";
   <div data-hash="slide6" class="swiper-slide">Slide 6</div>
   <div data-hash="slide7" class="swiper-slide">Slide 7</div>
   <div data-hash="slide8" class="swiper-slide">Slide 8</div>
-  <div data-hash="slide9" class="swiper-slide">Slide 9</div>
+  <div data-hash="slide9" class="swiper-slide">Slide 9</div> -->
+  {
+    posts.map((post) => (
+      <div data-hash={post.data.hash} class="swiper-slide">
+        {post.body}
+      </div>
+    ))
+  }
 </SwiperLayout>
